@@ -8,6 +8,7 @@ import br.aedu.anhanghera.poo.biblioteca.excecao.ReservaLivroException;
 import br.aedu.anhanghera.poo.biblioteca.negocio.BibliotecaNegocio;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,17 +19,16 @@ public class Principal {
     public static void main(String[] args) {
 
       bibliotecaNegocio.popularLivros();
-       
-       Livro l = new Livro();
-       l.setId(1);
-       l.setNome("Registro alterado");
-       l.setIsbn("isbn alterado");
-       
-       if(bibliotecaNegocio.atualizar(l)){
-           System.out.println("Livro atualizado");
-       }else{
-           System.out.println("Livro nao atualizado");
-       }
+      
+      List<Livro> livros = bibliotecaNegocio.listarLivros();
+      
+      System.out.println("Existe "+livros.size()
+              +" cadastrados no sistema");
+      
+      for(int i =0; i< livros.size(); i++){
+          System.out.println(livros.get(i).getIsbn());
+      }
+      
     }
 
 }

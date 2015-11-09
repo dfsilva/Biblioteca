@@ -11,6 +11,7 @@ import br.aedu.anhanghera.poo.biblioteca.dominio.Funcionario;
 import br.aedu.anhanghera.poo.biblioteca.dominio.Livro;
 import br.aedu.anhanghera.poo.biblioteca.excecao.LoginException;
 import br.aedu.anhanghera.poo.biblioteca.excecao.ReservaLivroException;
+import java.util.List;
 
 public class BibliotecaNegocio {
 	
@@ -49,12 +50,18 @@ public class BibliotecaNegocio {
 	}
 	
 	public void popularLivros(){
-		for(int i = 0; i < 500; i++){
-			Livro l = new Livro ("Livro "+1, "ISBN"+i);
-			LivroDAO.inserir(l);
-		}
+                List<Livro> livros = LivroDAO.listar();
+                if(livros.isEmpty()){
+                    for(int i = 0; i < 500; i++){
+                            Livro l = new Livro ("Livro "+1, "ISBN"+i);
+                            LivroDAO.inserir(l);
+                    }
+                }
 	}
-	
+        
+        public List<Livro> listarLivros(){
+            return LivroDAO.listar();
+        }
 	
 	public void autenticar(Autenticavel autenticavel, String senha) throws LoginException{
 		System.out.println("Iniciando a autenticacao do usuário: "+autenticavel.getId());

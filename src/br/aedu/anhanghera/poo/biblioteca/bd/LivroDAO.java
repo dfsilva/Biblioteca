@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -88,6 +90,47 @@ public class LivroDAO {
             e.printStackTrace();
         }
         return false;
+    }
+  
+     public static List<Livro> listar(){
+        
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        Connection con = null;
+        List<Livro> retorno = new ArrayList<>();
+        
+        try {
+            con = FabricaConexao.getConnection();
+            stm = con
+                    .prepareStatement("select * from livro");
+            
+            rs = stm.executeQuery();
+               
+            while(rs.next()){
+                Livro l = new Livro();
+                l.setId(rs.getLong("id"));
+                l.setNome(rs.getString("nome"));
+                l.setIsbn(rs.getString("isbn"));
+                
+                retorno.add(l);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                rs.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(LivroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                stm.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(LivroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        return retorno;
     }
     
 }
