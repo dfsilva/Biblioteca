@@ -5,6 +5,11 @@
  */
 package br.aedu.anhanghera.poo.biblioteca.gui;
 
+import br.aedu.anhanghera.poo.biblioteca.dominio.Livro;
+import br.aedu.anhanghera.poo.biblioteca.gui.model.LivroTableModel;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author 98379720172
@@ -86,9 +91,21 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void livrosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_livrosMenuItemActionPerformed
-       FrameLivros fl = new FrameLivros();
-       desktopPane.add(fl);
-       fl.setVisible(true);
+        FrameLivros fl = new FrameLivros();
+        List<Livro> livros = new ArrayList<>();
+        
+        Livro l = new Livro();
+        l.setId(1);
+        l.setNome("teste");
+        l.setIsbn("1212121");
+        
+        livros.add(l);
+        
+        LivroTableModel tm = new LivroTableModel(livros);
+
+        fl.setTblLivrosTableModel(tm);
+        desktopPane.add(fl);
+        fl.setVisible(true);
     }//GEN-LAST:event_livrosMenuItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
