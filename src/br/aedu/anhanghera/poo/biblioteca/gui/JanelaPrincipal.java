@@ -9,6 +9,8 @@ import br.aedu.anhanghera.poo.biblioteca.dominio.Livro;
 import br.aedu.anhanghera.poo.biblioteca.gui.model.LivroTableModel;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -104,6 +106,18 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         LivroTableModel tm = new LivroTableModel(livros);
 
         fl.setTblLivrosTableModel(tm);
+        
+        fl.tblLivros.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(fl.tblLivros.getSelectedRow() > -1){
+                    fl.txId.setText(fl.tblLivros.getValueAt(fl.tblLivros.getSelectedRow(), 0).toString());
+                }
+            }
+        });
+                
+                
         desktopPane.add(fl);
         fl.setVisible(true);
     }//GEN-LAST:event_livrosMenuItemActionPerformed
