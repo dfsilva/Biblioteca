@@ -31,7 +31,6 @@
               <Properties>
                 <Property name="mnemonic" type="int" value="108"/>
                 <Property name="text" type="java.lang.String" value="Livros"/>
-                <Property name="actionCommand" type="java.lang.String" value="Livros"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="livrosMenuItemActionPerformed"/>

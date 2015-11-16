@@ -112,7 +112,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if(fl.tblLivros.getSelectedRow() > -1){
-                    fl.txId.setText(fl.tblLivros.getValueAt(fl.tblLivros.getSelectedRow(), 0).toString());
+                    
+                    LivroTableModel tm = (LivroTableModel) fl.tblLivros.getModel();
+                    Livro livro = tm.getValueAt(fl.tblLivros.getSelectedRow());
+                    
+                    fl.txId.setText(String.valueOf(livro.getId()));
+                    fl.txNome.setText(livro.getNome());
+                    fl.txIsbn.setText(livro.getIsbn());
                 }
             }
         });

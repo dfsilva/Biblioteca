@@ -51,4 +51,7 @@ public class LivroTableModel extends AbstractTableModel{
         return colunas[column];
     }
     
+    public Livro getValueAt(int i){
+        return this.livros.get(i);
+    }
 }
