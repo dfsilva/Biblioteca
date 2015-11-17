@@ -13,17 +13,17 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author 98379720172
  */
-public class LivroTableModel extends AbstractTableModel{
-    
+public class LivroTableModel extends AbstractTableModel {
+
     private List<Livro> livros;
     private String[] colunas;
 
     public LivroTableModel(List<Livro> livros) {
         super();
         this.livros = livros;
-        colunas = new String[]{"ID", "NOME", "ISBN"};
+        colunas = new String[]{"ID", "NOME", "ISBN", "Excluir"};
     }
-    
+
     @Override
     public int getRowCount() {
         return livros.size();
@@ -37,11 +37,16 @@ public class LivroTableModel extends AbstractTableModel{
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Livro l = livros.get(rowIndex);
-        
-        switch(columnIndex){
-            case 0: return l.getId();
-            case 1: return l.getNome();
-            case 2: return l.getIsbn();
+
+        switch (columnIndex) {
+            case 0:
+                return l.getId();
+            case 1:
+                return l.getNome();
+            case 2:
+                return l.getIsbn();
+            case 3: 
+                return "Excluir livro";
         }
         return null;
     }
@@ -50,8 +55,16 @@ public class LivroTableModel extends AbstractTableModel{
     public String getColumnName(int column) {
         return colunas[column];
     }
-    
-    public Livro getValueAt(int i){
+
+    public Livro getValueAt(int i) {
         return this.livros.get(i);
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int column) {
+        if (column > 2) {
+            return true;
+        }
+        return false;
     }
 }

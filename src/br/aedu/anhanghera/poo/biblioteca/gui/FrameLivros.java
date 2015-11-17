@@ -61,7 +61,7 @@ public class FrameLivros extends javax.swing.JInternalFrame {
                 "Título 1"
             }
         ));
-        tblLivros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblLivros.setRowSelectionAllowed(false);
         jScrollPane1.setViewportView(tblLivros);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.LINE_START);

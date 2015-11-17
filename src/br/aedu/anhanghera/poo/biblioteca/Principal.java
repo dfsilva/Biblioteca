@@ -15,7 +15,7 @@ public class Principal {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 janelaPrincipal = new JanelaPrincipal();
-                janelaPrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//                janelaPrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 janelaPrincipal.setVisible(true);
             }
         });

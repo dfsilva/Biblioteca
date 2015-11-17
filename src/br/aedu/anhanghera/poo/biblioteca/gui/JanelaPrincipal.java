@@ -7,8 +7,13 @@ package br.aedu.anhanghera.poo.biblioteca.gui;
 
 import br.aedu.anhanghera.poo.biblioteca.dominio.Livro;
 import br.aedu.anhanghera.poo.biblioteca.gui.model.LivroTableModel;
+import br.aedu.anhanghera.poo.biblioteca.gui.table.ButtonColumn;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -62,7 +67,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         livrosMenuItem.setMnemonic('l');
         livrosMenuItem.setText("Livros");
-        livrosMenuItem.setActionCommand("Livros");
         livrosMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 livrosMenuItemActionPerformed(evt);
@@ -78,11 +82,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
         );
 
         pack();
@@ -95,35 +99,50 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void livrosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_livrosMenuItemActionPerformed
         FrameLivros fl = new FrameLivros();
         List<Livro> livros = new ArrayList<>();
-        
+
         Livro l = new Livro();
         l.setId(1);
         l.setNome("teste");
         l.setIsbn("1212121");
         
+          Livro l2 = new Livro();
+        l2.setId(2);
+        l2.setNome("teste 2");
+        l2.setIsbn("1212121");
+
         livros.add(l);
-        
+        livros.add(l2);
+
         LivroTableModel tm = new LivroTableModel(livros);
 
         fl.setTblLivrosTableModel(tm);
+
+        Action excluir = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                
+                JOptionPane.showMessageDialog(JanelaPrincipal.this, "Excluir Registro "+fl.tblLivros.getSelectedRow());
+                fl.tblLivros.clearSelection();
+            }
+        };
         
+        ButtonColumn btn = new ButtonColumn(fl.tblLivros, excluir, 3);
+
         fl.tblLivros.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(fl.tblLivros.getSelectedRow() > -1){
-                    
+                if (fl.tblLivros.getSelectedRow() > -1) {
+
                     LivroTableModel tm = (LivroTableModel) fl.tblLivros.getModel();
                     Livro livro = tm.getValueAt(fl.tblLivros.getSelectedRow());
-                    
+
                     fl.txId.setText(String.valueOf(livro.getId()));
                     fl.txNome.setText(livro.getNome());
                     fl.txIsbn.setText(livro.getIsbn());
                 }
             }
         });
-                
-                
+
         desktopPane.add(fl);
         fl.setVisible(true);
     }//GEN-LAST:event_livrosMenuItemActionPerformed

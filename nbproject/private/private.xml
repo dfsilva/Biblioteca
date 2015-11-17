@@ -4,10 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/98379720172/Documents/NetBeansProjects/Biblioteca/src/br/aedu/anhanghera/poo/biblioteca/Principal.java</file>
+            <file>file:/C:/Users/98379720172/Documents/NetBeansProjects/Biblioteca/src/br/aedu/anhanghera/poo/biblioteca/gui/table/ButtonColumn.java</file>
             <file>file:/C:/Users/98379720172/Documents/NetBeansProjects/Biblioteca/src/br/aedu/anhanghera/poo/biblioteca/gui/FrameLivros.java</file>
             <file>file:/C:/Users/98379720172/Documents/NetBeansProjects/Biblioteca/src/br/aedu/anhanghera/poo/biblioteca/gui/JanelaPrincipal.java</file>
             <file>file:/C:/Users/98379720172/Documents/NetBeansProjects/Biblioteca/src/br/aedu/anhanghera/poo/biblioteca/gui/model/LivroTableModel.java</file>
-            <file>file:/C:/Users/98379720172/Documents/NetBeansProjects/Biblioteca/src/br/aedu/anhanghera/poo/biblioteca/dominio/Livro.java</file>
         </group>
     </open-files>
 </project-private>
