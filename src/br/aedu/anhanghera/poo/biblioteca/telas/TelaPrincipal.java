@@ -9,6 +9,8 @@ import br.aedu.anhanghera.poo.biblioteca.bd.LivroDAO;
 import br.aedu.anhanghera.poo.biblioteca.dominio.Livro;
 import br.aedu.anhanghera.poo.biblioteca.telas.modelo.LivrosTableModel;
 import java.util.List;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -77,11 +79,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
 
         pack();
@@ -92,13 +94,34 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void livrosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_livrosMenuItemActionPerformed
-        LivrosFrame telaLivros = new LivrosFrame();
+        final LivrosFrame telaLivros = new LivrosFrame();
         
         List<Livro> livros = LivroDAO.listar();
         LivrosTableModel model = 
                 new LivrosTableModel(livros);
         
         telaLivros.tabelaLivros.setModel(model);
+        
+        telaLivros.tabelaLivros
+                .getSelectionModel()
+                .addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(telaLivros.tabelaLivros.getSelectedRow() > -1){
+                    LivrosTableModel tableModel = 
+                            (LivrosTableModel) telaLivros.tabelaLivros.getModel();
+                    
+                    Livro l = tableModel
+                            .getValueAt(telaLivros.tabelaLivros.getSelectedRow());
+                    
+                    telaLivros.txCodigo.setText(String.valueOf(l.getId()));
+                    telaLivros.txNome.setText(l.getNome());
+                    telaLivros.txIsbn.setText(l.getIsbn());
+                    
+                }
+            }
+        });
         
         desktopPane.add(telaLivros);
         telaLivros.setVisible(true);

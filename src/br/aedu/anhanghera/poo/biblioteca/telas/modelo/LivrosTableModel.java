@@ -45,5 +45,14 @@ public class LivrosTableModel extends AbstractTableModel{
         }
         return null;
     }
+
+    @Override
+    public String getColumnName(int column) {
+        return this.colunas[column];
+    }
+    
+    public Livro getValueAt(int indiceLinha){
+        return this.livros.get(indiceLinha);
+    }
     
 }
